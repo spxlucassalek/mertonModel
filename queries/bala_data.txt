@@ -1,0 +1,13 @@
+SELECT 
+    cq_prices.dd_bala.date,
+    cq_prices.dd_bala.ticker,
+    CASE
+        WHEN cq_prices.dd_bala.bs_tot_liab2 = 0 THEN NULL
+        ELSE cq_prices.dd_bala.bs_tot_liab2
+    END bs_tot_liab2,
+    CASE
+        WHEN cq_prices.dd_bala.bs_cur_liab = 0 THEN NULL
+        ELSE cq_prices.dd_bala.bs_cur_liab
+    END bs_cur_liab
+FROM
+    cq_prices.dd_bala

@@ -1,0 +1,14 @@
+SELECT 
+    cq_prices.dd_equity.date,
+    cq_prices.dd_equity.ticker,
+    CASE
+        WHEN cq_prices.dd_equity.px_last = 0 THEN NULL
+        ELSE cq_prices.dd_equity.px_last
+    END px_last,
+    cq_prices.dd_equity.cur_mkt_cap
+FROM
+    cq_prices.dd_equity
+        LEFT JOIN
+    cq_prices.equity ON cq_prices.dd_equity.ticker = cq_prices.equity.ticker
+        LEFT JOIN
+    cq_prices.company ON cq_prices.company.id_bb_company = cq_prices.equity.id_bb_company

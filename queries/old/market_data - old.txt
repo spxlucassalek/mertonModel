@@ -1,0 +1,14 @@
+SELECT 
+    credquant_prices.eqy_dd.date,
+    credquant_prices.eqy_dd.ticker,
+    credquant_prices.eqy_dd.bs_tot_liab2,
+    credquant_prices.eqy_dd.cur_mkt_cap,
+    credquant_prices.eqy_reg.INDUSTRY_SECTOR,
+    credquant_prices.eqy_reg.SECURITY_DES,
+    credquant_prices.eqy_dd.px_last
+
+FROM
+    credquant_prices.eqy_dd
+        INNER JOIN
+    credquant_prices.eqy_reg ON credquant_prices.eqy_reg.ticker = credquant_prices.eqy_dd.ticker
+       

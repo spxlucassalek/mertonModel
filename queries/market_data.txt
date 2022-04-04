@@ -1,0 +1,22 @@
+SELECT 
+    cq_prices.dd_equity.date,
+    cq_prices.dd_equity.ticker,
+    CASE
+        WHEN cq_prices.dd_bala.bs_tot_liab2 = 0 THEN NULL
+        ELSE cq_prices.dd_bala.bs_tot_liab2
+    END bs_tot_liab2,
+    cq_prices.dd_equity.cur_mkt_cap,
+    cq_prices.company.industry_sector AS INDUSTRY_SECTOR,
+    CASE
+        WHEN cq_prices.dd_equity.px_last = 0 THEN NULL
+        ELSE cq_prices.dd_equity.px_last
+    END px_last
+FROM
+    cq_prices.dd_equity
+        LEFT JOIN
+    cq_prices.equity ON cq_prices.dd_equity.ticker = cq_prices.equity.ticker
+        LEFT JOIN
+    cq_prices.company ON cq_prices.company.id_bb_company = cq_prices.equity.id_bb_company
+        LEFT JOIN
+    cq_prices.dd_bala ON cq_prices.dd_bala.ticker = cq_prices.dd_equity.ticker
+        AND cq_prices.dd_bala.date = cq_prices.dd_equity.date

@@ -1,0 +1,4 @@
+SELECT 
+    date, ticker AS asset, bs_cur_liab
+FROM
+    cq_prices.dd_bala

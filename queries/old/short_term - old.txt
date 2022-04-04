@@ -1,0 +1,4 @@
+SELECT 
+    date, ticker AS asset, bs_cur_liab
+FROM
+    credquant_prices.eqy_cur_liab_dd;

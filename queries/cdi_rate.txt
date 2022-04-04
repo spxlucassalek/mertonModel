@@ -1,0 +1,10 @@
+SELECT 
+    *
+FROM
+    credquant_prices.dd_curves
+        INNER JOIN
+    credquant_prices.curve_registry ON credquant_prices.curve_registry.id = credquant_prices.dd_curves.id
+WHERE
+    credquant_prices.curve_registry.curve_name = 'CDI'
+
+      
